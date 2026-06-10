@@ -17,7 +17,7 @@ body {
 #header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     padding: 4.5rem 0 3.5rem 0;
     max-width: 1200px;
     margin: 0 auto;
@@ -40,6 +40,7 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
 
 .logo a {
     color: inherit;          /* Inherits the dark color from the parent logo style */
