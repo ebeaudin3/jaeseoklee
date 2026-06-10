@@ -128,6 +128,21 @@ nav a:hover, nav a.active {
     background-color: #fff;
 }
 
+/* Update your profile picture frame to look like a precise scientific figure map */
+.split-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    
+    /* Elegant scientific alternating map-border aesthetic */
+    padding: 6px;
+    border: 1px solid #111;
+    outline: 4px solid #fff;
+    box-shadow: 0 0 0 5px #111;
+    background-color: #fff;
+}
+
 /* Native Zoom Indicator for Figures linking to High-Res tabs */
 .image-link {
     display: block;
