@@ -365,9 +365,7 @@ body {
 /* ==========================================================================
    The Floating Website Bounding Box
    ========================================================================== */
-/* ==========================================================================
-   The Floating Website Bounding Box (Smoothed Transition)
-   ========================================================================== */
+
 main {
     max-width: 1200px;
     background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
@@ -402,7 +400,36 @@ nav a:hover, nav a.active {
 }
 
 /* ==========================================================================
-   7. MOBILE RESPONSIVE OVERRIDES
+   Interactive Seismic Wavefront Click Effect
+   ========================================================================== */
+.seismic-wavefront {
+    position: fixed;
+    border: 1px solid rgba(36, 35, 33, 0.6); /* Precise ink line matching your text */
+    border-radius: 50%;
+    pointer-events: none;                      /* Prevents the ring from blocking actual links */
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 9999;                             /* Ensures it plays on top of images and backgrounds */
+    
+    /* Hardware-accelerated smooth propagation curve */
+    animation: propagate 0.6s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes propagate {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    100% {
+        width: 160px;                         /* Total distance the shockwave travels */
+        height: 160px;
+        opacity: 0;                           /* Smoothly fades out as energy dissipates */
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE OVERRIDES
    ========================================================================== */
 @media (max-width: 768px) {
     #header-container {
