@@ -1,13 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Fetch and inject the top header HTML
+    // 1. Fetch and inject the top header HTML
     fetch("header.html")
         .then(response => response.text())
         .then(data => {
             document.getElementById("header-container").innerHTML = data;
             setActiveTab();
+            
+            // CRITICAL FIX: Only wire up the SPA navigation AFTER the header HTML actually exists in the DOM!
+            initSPANavigation(); 
         })
         .catch(err => console.error("Header template loading failed:", err));
     
+    // Fetch and inject the footer HTML
     fetch("footer.html")
         .then(response => response.text())
         .then(data => {
@@ -31,7 +35,7 @@ function setActiveTab() {
     }
 }
 
-// Seismic wave clicks
+// Interactive multi-ring seismic wavefront clicks
 window.addEventListener('mousedown', (e) => {
     const totalWaves = 3;       // Number of concentric rings
     const waveDelay = 120;      // Stagger spacing in milliseconds
@@ -41,13 +45,11 @@ window.addEventListener('mousedown', (e) => {
             const wavefront = document.createElement('div');
             wavefront.className = 'seismic-wavefront';
             
-            // Lock coordinates precisely to the epicenter
             wavefront.style.left = `${e.clientX}px`;
             wavefront.style.top = `${e.clientY}px`;
             
             document.body.appendChild(wavefront);
             
-            // Clean up the element once its specific wave cycle clears
             wavefront.addEventListener('animationend', () => {
                 wavefront.remove();
             });
@@ -55,53 +57,52 @@ window.addEventListener('mousedown', (e) => {
     }
 });
 
-/*  SPA-like NAVIGATION */
-// 1. Listen for clicks on the navigation tabs
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        const targetUrl = link.getAttribute('href');
-        
-        // Skip handling external links or anchor links
-        if (targetUrl.startsWith('http') || targetUrl.startsWith('#')) return;
-        
-        // Stop the browser from executing a full-page reload
-        e.preventDefault();
-        
-        // Execute the smooth background page migration
-        navigateToPage(targetUrl);
-    });
-});
+/* ==========================================================================
+   SPA-like NAVIGATION ENGINE
+   ========================================================================== */
 
-// 2. The Dynamic Content Loading Engine
+// Wrapped inside a function so we can initialize it safely at the correct time
+function initSPANavigation() {
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetUrl = link.getAttribute('href');
+            
+            if (targetUrl.startsWith('http') || targetUrl.startsWith('#')) return;
+            
+            // Safely stop the full page reload
+            e.preventDefault();
+            
+            // Execute the partial content stream
+            navigateToPage(targetUrl);
+        });
+    });
+}
+
 function navigateToPage(url) {
-    // Quietly fetch the next HTML document in the background
     fetch(url)
         .then(response => response.text())
         .then(htmlString => {
-            // Turn the fetched text string into a temporary readable HTML DOM
             const parser = new DOMParser();
             const nextDoc = parser.parseFromString(htmlString, 'text/html');
             
-            // Extract the fresh content inside the next page's <main> container
+            // Surgically pull out the internal view container
             const newInnerContent = nextDoc.querySelector('#page-content').innerHTML;
             
-            // Inject only that fresh content straight into your current <main> canvas
+            // Swap out ONLY the middle text canvas
             document.querySelector('#page-content').innerHTML = newInnerContent;
             
-            // 3. Update the URL browser bar so back/forward buttons still work perfectly
+            // Update browser history state
             history.pushState({ url }, '', url);
             
-            // 4. Run any UI updates needed (like switching the active nav highlight)
+            // Re-verify which navigation tab is lit up
             updateActiveNavTab(url);
         })
         .catch(err => {
             console.error('Failed to stream tectonic content:', err);
-            // Fallback: If anything breaks, just execute a standard hard load
             window.location.href = url;
         });
 }
 
-// 5. Keep navigation styling up-to-date with the active tab position
 function updateActiveNavTab(url) {
     document.querySelectorAll('nav a').forEach(link => {
         const href = link.getAttribute('href');
@@ -113,7 +114,7 @@ function updateActiveNavTab(url) {
     });
 }
 
-// 6. Handle the browser's native Back/Forward buttons smoothly
+// Handle browser navigation arrows cleanly
 window.addEventListener('popstate', (e) => {
     if (e.state && e.state.url) {
         navigateToPage(e.state.url);
