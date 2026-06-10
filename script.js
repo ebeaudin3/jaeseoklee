@@ -31,21 +31,26 @@ function setActiveTab() {
     }
 }
 
-// Seismic mouse cursor
-window.addEventListener('click', (e) => {
-    // 1. Create a dynamic epicentral element
-    const wavefront = document.createElement('div');
-    wavefront.className = 'seismic-wavefront';
-    
-    // 2. Position the epicenter exactly where the mouse coordinates are
-    wavefront.style.left = `${e.clientX}px`;
-    wavefront.style.top = `${e.clientY}px`;
-    
-    // 3. Inject it into the page architecture
-    document.body.appendChild(wavefront);
-    
-    // 4. Automatically delete it from the DOM once the wave finishes expanding
-    wavefront.addEventListener('animationend', () => {
-        wavefront.remove();
-    });
+// Seismic wave clicks
+window.addEventListener('mousedown', (e) => {
+    const totalWaves = 3;       // Number of concentric rings
+    const waveDelay = 120;      // Stagger spacing in milliseconds
+
+    for (let i = 0; i < totalWaves; i++) {
+        setTimeout(() => {
+            const wavefront = document.createElement('div');
+            wavefront.className = 'seismic-wavefront';
+            
+            // Lock coordinates precisely to the epicenter
+            wavefront.style.left = `${e.clientX}px`;
+            wavefront.style.top = `${e.clientY}px`;
+            
+            document.body.appendChild(wavefront);
+            
+            // Clean up the element once its specific wave cycle clears
+            wavefront.addEventListener('animationend', () => {
+                wavefront.remove();
+            });
+        }, i * waveDelay);
+    }
 });
