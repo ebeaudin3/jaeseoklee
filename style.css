@@ -230,15 +230,7 @@ footer {
     align-items: flex-start;
 }
 
-/* Image link wrapper behavior */
-.image-link {
-    display: block;
-    cursor: zoom-in;
-    transition: opacity 0.2s ease;
-}
 
-.image-link:hover {
-    opacity: 0.85;
 
 
 /* Mobile & Tablet Scaling Optimization */
@@ -279,6 +271,6 @@ footer {
     }
     .project-item.inverse .project-text,
     .project-item.inverse .project-figure {
-        order: unset; /* Return to natural reading order on mobile devices */
+        order: unset; 
     }
 }
