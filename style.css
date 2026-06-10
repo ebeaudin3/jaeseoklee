@@ -241,9 +241,13 @@ nav a:hover, nav a.active {
 
 .section-divider {
     border: 0;
-    height: 1px;
-    background-color: #eee;
+    height: 30px;
     margin: 5rem 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.25; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' fill='none' stroke='%23111111' stroke-width='0.5'%3E%3Cpath d='M0,10 L35,10 L38,8 L41,12 L43,5 L45,15 L47,2 L49,18 L51,6 L53,13 L55,9 L58,11 L61,10 L100,10'/%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
