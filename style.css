@@ -370,16 +370,10 @@ body {
    ========================================================================== */
 main {
     max-width: 1200px;
-    margin: 2rem auto 5rem auto;   /* Generates space around the floating sheet */
-    
-    /* 3. Turns your content into a clean, physical paper dossier document */
     background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
-    padding: 4rem 5rem;            /* Generates crisp inner margins for your text */
-    
-    /* 4. Elegant structural shadows separating your data from the background rocks */
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 4rem 5rem;            
+    border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    
     animation: fadeIn 0.4s ease-in-out;
 }
 
