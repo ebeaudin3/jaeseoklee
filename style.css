@@ -83,11 +83,28 @@ nav a:hover, nav a.active {
     color: #000;
 }
 
+/* Seismogram Footer Alignment */
 #footer-container, footer {
     max-width: 1200px;
-    margin: 6rem auto 0 auto;
-    padding: 2rem 0;
-    border-top: 1px solid #eaeaea;
+    margin: 7rem auto 0 auto;
+    
+    /* 1. Create a deep top padding to push your copyright text below the wave */
+    padding: 4rem 0 2rem 0; 
+    
+    /* 2. Remove the old solid border line */
+    border-top: none; 
+    
+    /* 3. Drop the seismic line + wave packet directly onto the top edge of the footer */
+    background-repeat: no-repeat;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' fill='none' stroke='%23222222' stroke-width='0.6'%3E%3Cpath d='M0,10 L12,10 L14,7 L17,13 L19,3 L21,17 L23,5 L25,14 L27,8 L29,11 L31,10 L40,10'/%3E%3C/svg%3E"),
+        linear-gradient(to right, transparent, #eaeaea 15%, #eaeaea 85%, transparent);
+        
+    background-size: 180px 30px, 100% 1px;
+    background-position: center top, center top; /* Locks the design perfectly to the top edge */
+    opacity: 0.65;
+    
+    /* Text styling */
     text-align: center;
     font-size: 0.85rem;
     color: #999;
@@ -256,13 +273,9 @@ nav a:hover, nav a.active {
 
 .section-divider {
     border: 0;
-    height: 30px;
+    height: 1px;
+    background-color: #eee;
     margin: 5rem 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    opacity: 0.25; 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' fill='none' stroke='%23111111' stroke-width='0.5'%3E%3Cpath d='M0,10 L35,10 L38,8 L41,12 L43,5 L45,15 L47,2 L49,18 L51,6 L53,13 L55,9 L58,11 L61,10 L100,10'/%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
