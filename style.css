@@ -116,7 +116,7 @@ main {
 .timeline-item {
     display: flex;
     gap: 3.5rem;          /* Distinct space between year column and text column */
-    margin-bottom: 3.5rem;
+    margin-bottom: 1.5rem;
     align-items: flex-start;
 }
 
