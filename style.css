@@ -20,10 +20,9 @@ nav a:hover, nav a.active {
 
 /* Main Display Canvas Container */
 main {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     padding-bottom: 5rem;
-    animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -39,7 +38,7 @@ main {
     justify-content: space-between;
     align-items: baseline; /* Locks name and menu tabs onto the exact same text line */
     padding: 4.5rem 0 3.5rem 0;
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -90,7 +89,7 @@ nav a:hover, nav a.active {
 
 /* Seismogram Footer Alignment */
 #footer-container, footer {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 7rem auto 0 auto;
     padding: 4rem 0 2rem 0; 
     
@@ -362,16 +361,13 @@ body {
     padding: 0 4%;
 }
 
+
 /* ==========================================================================
    The Floating Website Bounding Box
    ========================================================================== */
-/* ==========================================================================
-   The Floating Website Bounding Box (Smoothed Transition)
-   ========================================================================== */
 main {
-    max-width: 1200px;
     background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
-    padding: 4rem 5rem;            
+    padding: 0em 10em 0em 10em,   
     border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.4s ease-in-out;
