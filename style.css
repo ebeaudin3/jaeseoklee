@@ -156,6 +156,84 @@ footer {
     color: #bbb;
 }
 
+/* Research Page Specific Styles */
+.research-intro {
+    max-width: 900px;
+    margin-bottom: 5rem;
+}
+
+.lead-text {
+    font-size: 1.3rem;
+    color: #444;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* Elegant Project Layout Row */
+.project-item {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 5rem;
+    margin-bottom: 7rem;
+    align-items: center;
+}
+
+/* Optional: Flips the layout order of every other project section on desktop for rhythm */
+.project-item.inverse {
+    grid-template-columns: 0.85fr 1.15fr;
+}
+.project-item.inverse .project-text {
+    order: 2;
+}
+.project-item.inverse .project-figure {
+    order: 1;
+}
+
+.project-text h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.project-text p {
+    font-size: 1.05rem;
+    color: #333;
+    margin-bottom: 1.2rem;
+}
+
+/* Figures & Diagrams Formatting */
+.project-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #fafafa; /* Subtle background for clean scientific plots */
+    border: 1px solid #f0f0f0;
+    padding: 0.5rem;
+}
+
+.project-figure .caption {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.8rem;
+    line-height: 1.4;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #eee;
+    margin: 5rem 0;
+}
+
+.publications-section h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+}
+
+
 /* Mobile & Tablet Scaling Optimization */
 @media (max-width: 768px) {
     #header-container {
@@ -176,5 +254,24 @@ footer {
     .pub-item {
         flex-direction: column;
         gap: 0.2rem;
+    }
+}
+
+/* Mobile Responsive Override for Projects */
+@media (max-width: 768px) {
+    .research-intro {
+        margin-bottom: 3rem;
+    }
+    .lead-text {
+        font-size: 1.15rem;
+    }
+    .project-item, .project-item.inverse {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-bottom: 4.5rem;
+    }
+    .project-item.inverse .project-text,
+    .project-item.inverse .project-figure {
+        order: unset; /* Return to natural reading order on mobile devices */
     }
 }
