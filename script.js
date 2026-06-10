@@ -54,3 +54,17 @@ window.addEventListener('mousedown', (e) => {
         }, i * waveDelay);
     }
 });
+
+// buy time to let the seismic wave when changing tab
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        // Stop the browser from instantly changing the page
+        e.preventDefault();
+        const destination = link.getAttribute('href');
+        
+        // Let the wave rings expand for 250ms, then shift pages cleanly
+        setTimeout(() => {
+            window.location.href = destination;
+        }, 250);
+    });
+});
