@@ -388,7 +388,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 4rem 2rem 2rem 2rem;  /* Added padding so it aligns with the main sheet */
     max-width: 1200px;
     margin: 0 auto;
     
