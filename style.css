@@ -41,6 +41,10 @@ body {
     text-transform: uppercase;
 }
 
+.logo a {
+    color: inherit;          /* Inherits the dark color from the parent logo style */
+}
+
 nav {
     display: flex;
     gap: 2.5rem;
