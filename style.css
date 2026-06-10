@@ -342,6 +342,69 @@ nav a:hover, nav a.active {
     text-indent: -1.5rem;
 }
 
+
+/* ==========================================================================
+   Parallax Tectonic Earth Backdrop
+   ========================================================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111;
+    
+    /* 1. Insert your background landscape image here */
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.15)), 
+                      url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=2000');
+    
+    /* 2. The Parallax Magic Engine */
+    background-attachment: fixed;  /* Keeps the image locked in place while scrolling */
+    background-size: cover;        /* Stretches the landscape to fill the display */
+    background-position: center;   /* Keeps the focus centered */
+    
+    padding: 0 4%;
+}
+
+/* ==========================================================================
+   The Floating Website Bounding Box
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 2rem auto 5rem auto;   /* Generates space around the floating sheet */
+    
+    /* 3. Turns your content into a clean, physical paper dossier document */
+    background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
+    padding: 4rem 5rem;            /* Generates crisp inner margins for your text */
+    
+    /* 4. Elegant structural shadows separating your data from the background rocks */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Float your top navigation cleanly over the background landscape */
+#header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4rem 2rem 2rem 2rem;  /* Added padding so it aligns with the main sheet */
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    /* Give header text high-contrast pop over the landscape background */
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4); 
+}
+
+/* Tweak your header logo text to stay bold over the scenery */
+.logo a {
+    color: #000000;
+}
+nav a {
+    color: #444444;
+    font-weight: 600;
+}
+nav a:hover, nav a.active {
+    color: #000000;
+}
+
 /* ==========================================================================
    7. MOBILE RESPONSIVE OVERRIDES
    ========================================================================== */
