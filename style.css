@@ -7,15 +7,24 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #1C1D1F;
-    background-color: #F9F8F5;
+    color: #242321;           /* Faded iron-gall ink */
+    background-color: #E8E2D5; /* Sun-bleached canvas / vintage field notes */
     line-height: 1.6;
-    padding: 0 6%; /* Side margins for the entire screen layout */
-    transition: background-color 0.3s ease; /* Optional: smooths out page transitions */
+    padding: 0 6%;
+}
+
+nav a {
+    text-decoration: none;
+    color: #8A8174;           /* Muted dust brown */
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
 }
 
 nav a:hover, nav a.active {
-    color: #D34E36; /* Crisp seismic indicator red */
+    color: #4A5D4E;
 }
 
 /* Main Display Canvas Container */
@@ -138,9 +147,10 @@ nav a:hover, nav a.active {
     width: 100%;
     height: auto;
     display: block;
-    border: 1px solid #f2f2f2;
-    padding: 0.4rem;
-    background-color: #fff;
+    border: 1px solid #33312E; /* Crisp ink-line border */
+    padding: 0.5rem;
+    background-color: #F4EFE6; /* Placed on a slightly brighter parchment mounting block */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft physical paper lift shadow */
 }
 
 /* Update your profile picture frame to look like a precise scientific figure map */
@@ -186,7 +196,7 @@ nav a:hover, nav a.active {
 
 .timeline-year {
     font-weight: 700;
-    color: #bbb;
+    color: #7A6B58;
     min-width: 95px;       /* Sleek width parameters for time steps */
     font-size: 0.95rem;    /* Refined scale for tight spacing */
     line-height: 1.3;
@@ -195,7 +205,7 @@ nav a:hover, nav a.active {
 .timeline-year small {
     font-weight: 400;
     font-size: 0.75rem;
-    color: #999;
+    color: #8A8174;
 }
 
 .timeline-content h3 {
@@ -208,13 +218,13 @@ nav a:hover, nav a.active {
 
 .timeline-content .institution {
     font-size: 0.95rem;
-    color: #555;
+    color: #59534C;
     margin-bottom: 0.2rem;
 }
 
 .timeline-content .details {
     font-size: 0.9rem;
-    color: #666;
+    color: #33312E;
     line-height: 1.4;
 }
 
@@ -297,7 +307,7 @@ nav a:hover, nav a.active {
 
 .pub-year {
     font-weight: 700;
-    color: #bbb;
+    color: #7A6B58;
     min-width: 60px;
 }
 
