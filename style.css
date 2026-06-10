@@ -26,23 +26,12 @@ body {
 /* Footer */
 #footer-container {
     max-width: 1200px;
-    margin: 4rem auto 0 auto;
-    padding-bottom: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-#footer-container hr {
-    border: 0;
-    height: 1px;
-    background-color: #eee; /* Light gray line matching Hoffmann's aesthetic */
-}
-
-#footer-container p {
+    margin: 6rem auto 0 auto;
+    padding: 2rem 0;
+    border-top: 1px solid #eaeaea; /* This creates the clean line */
+    text-align: center;             /* This centers the copyright text */
     font-size: 0.85rem;
-    color: #bbb;
-    letter-spacing: 0.5px;
+    color: #999;
 }
 
 .logo {
