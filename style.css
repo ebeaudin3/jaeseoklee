@@ -25,7 +25,24 @@ body {
 
 /* Footer */
 #footer-container {
+    max-width: 1200px;
+    margin: 4rem auto 0 auto;
+    padding-bottom: 3rem;
     display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#footer-container hr {
+    border: 0;
+    height: 1px;
+    background-color: #eee; /* Light gray line matching Hoffmann's aesthetic */
+}
+
+#footer-container p {
+    font-size: 0.85rem;
+    color: #bbb;
+    letter-spacing: 0.5px;
 }
 
 .logo {
