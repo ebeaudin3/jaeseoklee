@@ -370,29 +370,15 @@ body {
    ========================================================================== */
 main {
     max-width: 1200px;
-    margin: 4rem auto 5rem auto;
+    margin: 2rem auto 5rem auto;   /* Generates space around the floating sheet */
     
-    /* Soft limestone off-white instead of harsh blinding white */
-    background-color: #FDFBF9; 
+    /* 3. Turns your content into a clean, physical paper dossier document */
+    background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
+    padding: 4rem 5rem;            /* Generates crisp inner margins for your text */
     
-    padding: 2rem 5rem 4rem 5rem;
-    
-    /* A faint border tinted with a touch of earth-brown to ease the edge */
-    border: 1px solid rgba(120, 110, 95, 0.12);
-    
-    /* THE MAGIC ENGINE: Multi-layered smooth shadow.
-       Stacks 4 faint, highly-diffused layers using a warm-tinted shadow base 
-       to smoothly melt the card's edge into the rock texture.
-    */
-    box-shadow: 
-        0 4px 6px rgba(36, 32, 28, 0.02),
-        0 12px 24px rgba(36, 32, 28, 0.04),
-        0 30px 50px rgba(36, 32, 28, 0.06),
-        0 60px 100px rgba(36, 32, 28, 0.08);
-    
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
+    /* 4. Elegant structural shadows separating your data from the background rocks */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     
     animation: fadeIn 0.4s ease-in-out;
 }
