@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
             setActiveTab();
         })
         .catch(err => console.error("Header template loading failed:", err));
+    
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-container").innerHTML = data;
+        })
+        .catch(err => console.error("Footer loading failed:", err));
 });
 
 function setActiveTab() {
