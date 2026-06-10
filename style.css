@@ -222,6 +222,24 @@ footer {
     letter-spacing: 1px;
 }
 
+/* Container holding the two figures side-by-side */
+.project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Splitting the figures column equally into two columns */
+    gap: 1.5rem;                    /* Clear spacing space between the two charts */
+    align-items: flex-start;
+}
+
+/* Image link wrapper behavior */
+.image-link {
+    display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+}
+
+.image-link:hover {
+    opacity: 0.85;
+
 
 /* Mobile & Tablet Scaling Optimization */
 @media (max-width: 768px) {
@@ -244,11 +262,11 @@ footer {
         flex-direction: column;
         gap: 0.2rem;
     }
-}
-
-/* Mobile Responsive Override for Projects */
-@media (max-width: 768px) {
-    .research-intro {
+    .project-gallery {
+        grid-template-columns: 1fr; /* Stacks figures on top of each other on mobile phones */
+        gap: 2.5rem;
+    }
+     .research-intro {
         margin-bottom: 3rem;
     }
     .lead-text {
