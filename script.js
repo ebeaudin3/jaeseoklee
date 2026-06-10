@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("sidebar.html")
+    // Fetch and inject the top header HTML
+    fetch("header.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("sidebar-container").innerHTML = data;
+            document.getElementById("header-container").innerHTML = data;
             setActiveTab();
         })
-        .catch(err => console.error("Sidebar loading failed:", err));
+        .catch(err => console.error("Header template loading failed:", err));
 });
 
 function setActiveTab() {
