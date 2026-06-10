@@ -427,6 +427,71 @@ nav a:hover, nav a.active {
 }
 
 /* ==========================================================================
+   Seismic Navigation Menu & Active Indicators
+   ========================================================================== */
+nav {
+    display: flex;
+    gap: 2.5rem;                  /* Clean, consistent spacing between items */
+}
+
+nav a {
+    text-decoration: none;
+    color: #888888;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    
+    position: relative;
+    padding-bottom: 14px;         /* Leaves precise breathing room for the wave underline */
+    transition: color 0.2s ease;
+}
+
+/* Hover state: text sharpens to near-black */
+nav a:hover {
+    color: #111111;
+}
+
+/* Active State: Text locks to matching crustal dark red */
+nav a.active {
+    color: #8C1919;               /* Matches your cursor shockwaves precisely */
+    font-weight: 700;
+}
+
+/* The Tectonic Underline Trace Generator */
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    height: 14px;                 /* Height bounds of the wave spikes */
+    width: 100%;                  /* Matches the exact width of the active word */
+    
+    /* Inline custom SVG: A flat baseline that erupts into an earthquake signal right in the center */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 14' fill='none' stroke='%238C1919' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0,7 L13,7 L15,3 L17,11 L19,0 L21,14 L23,4 L25,9 L27,7 L40,7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+    /* Micro-animation: The wave propagates outward from the epicenter when the tab swaps */
+    animation: seismicTrace 0.35s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* Propagation physics for the underline */
+@keyframes seismicTrace {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+    100% {
+        width: 110%;              /* Bleeds slightly past the edges of the word for an authentic chart look */
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
    MOBILE RESPONSIVE OVERRIDES
    ========================================================================== */
 @media (max-width: 768px) {
