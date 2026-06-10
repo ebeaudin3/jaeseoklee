@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. BASE RESET & GLOBAL STYLES
-   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -194,7 +192,7 @@ nav a:hover, nav a.active {
    5. RESEARCH VIEW SPECIFIC LAYOUT CONSTRAINTS
    ========================================================================== */
 .research-intro {
-    max-width: 750px;      /* Bounds standalone text layout width to resolve page line anomalies */
+    max-width: 950px;  
     margin-bottom: 4rem;
 }
 
@@ -211,7 +209,7 @@ nav a:hover, nav a.active {
 
 .project-text {
     margin-bottom: 2.5rem;
-    max-width: 750px;      /* Matches the introduction layout bounds beautifully */
+    max-width: 950px;      /* Matches the introduction layout bounds beautifully */
 }
 
 .project-text h3 {
