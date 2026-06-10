@@ -3,26 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education | J. Lee</title>
+    <title>Research | Jaeseok Lee</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-   <div id="header-container"></div>
+    <div id="header-container"></div>
 
     <main>
-        <h2>RESEARCH</h2>
+        
+        <section class="research-intro">
+            <h2>RESEARCH</h2>
+            <p class="lead-text">
+               I perceive seismology as a study of identifying the mapping between the unknown earthquake source domain and the codomain of observables.
+                Although the forward mapping - represented by the Green's functions - is deterministic in theory, some aspects of the map still remain unclear.
+                The earthquake source process is ill-constrained, the available observations are limited, and the mapping functions are restricted by our knowledge about the Earth's structure and the seismic wave propagation.
+                I believe that the relationship between the source domain and the observable range should be formulated probabilistically to account for both epistemic and aleatory uncertainties. In this sense, my research aimed to make a small contribution towards identifying the mapping through numerical modeling and statistical parametrization, albeit within a limited scope of frequency, magnitude, and region.
+            </p>
+        </section>
 
 
-        blablabla
-    
-    
-    
-    
+        <section class="project-item">
+            <div class="project-text">
+                <h3>3-D Seismic Wave Propagation</h3>
+                <p>
+                    In my publication Lee et al. (in press), I simulated the seismic waveforms for large (Mw > 5.4) earthquake scenarios in the southeastern Korean Peninsula, using pseudo-dynamic rupture models and a 3-D velocity model within a SEM-based framework (<a href=https://geodynamics.org/cig/software/specfem3d/>SPECFEM3D</a>).
+                    Ensembles of <a href=https://github.com/sgsong1017/SongRMG>pseudo-dynamic rupture models</a> (<a href=https://academic.oup.com/gji/article/204/2/1254/597744?login=true>Song, 2016</a>), with correlation structures derived from a set of dynamic rupture models, were generated stochastically to emulate the unknown rupture process under physical constraints.
+                    300 different rupture models were generated for a fixed scenario magnitude, and each rupture model was convolved with the pre-calculated Green's functions at the discretized subfaults.
+                    Comparison of the aggregated peak ground velocity values to the observations of the 2016 Gyeongju earthquake demonstrated that the effects of surface-wave radiation, rupture directivity, and both local and regional amplifications from the 3-D wave propagation were reproduced accurately.
+                </p>
+                <p>
+                    This reseach was developed with guidance from Professor <a href=https://seismology.korea.ac.kr/cv><b>Seongryong Kim</b></a>, and is the first published work of 3-D physics-based ground motion simulations targeting the Korean Peninsula.
+                    In the research process, I learned that the faith in numerical simulations can only be developed through rigorous verification and validation.
+                    I had previously tested the reliability of 3-D wave propagation simulations with finite fault models (<a href=http://equake-rc.info/srcmod/>SRCMOD</a>) of large historical earthquakes (e.g., 1946 Nankai, 2004 Fukuoka, 2016 Kumamoto) in my undergraduate research project (<a href=https://jsklee.github.io/assets/data/InternReport.pdf>1</a>, <a href=https://jsklee.github.io/assets/data/NankaiEQ.pdf>2</a>), which became the foundation for this study.
+                    I seek to develop my abilities as a researcher to appropriately formulate meaningful geophysical problems and interpret the implications of numerical simulations.
+                    For more details, please check out my presentation in AGU 2021.
+                </p>
+            </div>
+            <div class="project-figure">
+                <img src="images/pseudo.png">
+                <p class="caption"><strong>Figure:</strong> Gradient plots illustrating an example of a randomly generated pseudo-dynamic rupture model for a Mw 7.0 scenario (Lee et al., 2021).</p>
+            </div>
+        </section>
+
+
+        <section class="project-item inverse">
+            <div class="project-text">
+                <h3>[Insert Project Theme or Title B]</h3>
+                <p>
+                    [Insert first paragraph of project description here. Discuss the core scientific question, methodologies, or data sets used.]
+                </p>
+                <p>
+                    [Insert second paragraph of project description here. Discuss major findings, implications, or future project trajectories.]
+                </p>
+            </div>
+            <div class="project-figure">
+                <img src="images/[insert-your-figure-filename-b].png" alt="[Insert alt text description for accessibility]">
+                <p class="caption"><strong>Figure 2:</strong> [Insert detailed figure caption explaining the scientific plot or model diagram here.]</p>
+            </div>
+        </section>
+
+
+        <hr class="section-divider">
+
+
+        <section class="publications-section">
+            <h3>SELECTED PUBLICATIONS</h3>
+            <ul style="list-style: none;">
+
+                <li class="pub-item">
+                    <span class="pub-year">[Year]</span>
+                    <div class="pub-details">
+                        <strong>Lee, J.</strong>, Co-author, B., & Co-author, C. 
+                        "[Insert Full Title of the Published Paper Here]." 
+                        <em>[Insert Journal Name]</em>, [Volume(Issue)], [Pages or Article Number].
+                        <a href="[Insert URL Link Here]" target="_blank" class="pub-link">[Journal Link]</a>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <span class="pub-year">[Year]</span>
+                    <div class="pub-details">
+                        Co-author, A., <strong>Lee, J.</strong>, & Co-author, C. 
+                        "[Insert Full Title of the Published Paper Here]." 
+                        <em>[Insert Journal Name]</em>, [Volume(Issue)], [Pages or Article Number].
+                        <a href="[Insert URL Link Here]" target="_blank" class="pub-link">[Journal Link]</a>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
     </main>
 
     <div id="footer-container"></div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
