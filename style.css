@@ -8,9 +8,10 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #111;
-    background-color: #fff;
+    background-color: #E6D5CC;
     line-height: 1.6;
     padding: 0 6%; /* Side margins for the entire screen layout */
+    transition: background-color 0.3s ease; /* Optional: smooths out page transitions */
 }
 
 /* Main Display Canvas Container */
