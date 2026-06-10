@@ -83,10 +83,10 @@ function navigateToPage(url) {
             const nextDoc = parser.parseFromString(htmlString, 'text/html');
             
             // Extract the fresh content inside the next page's <main> container
-            const newMainContent = nextDoc.querySelector('main').innerHTML;
+            const newInnerContent = nextDoc.querySelector('#page-content').innerHTML;
             
             // Inject only that fresh content straight into your current <main> canvas
-            document.querySelector('main').innerHTML = newMainContent;
+            document.querySelector('#page-content').innerHTML = newInnerContent;
             
             // 3. Update the URL browser bar so back/forward buttons still work perfectly
             history.pushState({ url }, '', url);
