@@ -20,7 +20,7 @@ nav a:hover, nav a.active {
 
 /* Main Display Canvas Container */
 main {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding-bottom: 5rem;
     animation: fadeIn 0.4s ease-in-out;
@@ -367,9 +367,8 @@ body {
    ========================================================================== */
 
 main {
-    max-width: 1200px;
     background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
-    padding: 4rem 5rem;            
+    padding: 0 12rem 4rem 12rem;
     border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.4s ease-in-out;
