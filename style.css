@@ -150,20 +150,34 @@ nav a.active::after {
 }
 
 /* Seismogram Footer Alignment */
-#footer-container, footer {
-    width: 100%;
-    margin-top: auto;            /* Spring anchor: aggressively pins footer to absolute page bottom */
-    padding: 6rem 0 2rem 0; 
-    background-repeat: no-repeat;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' fill='none' stroke='%23222222' stroke-width='0.6'%3E%3Cpath d='M0,10 L12,10 L14,7 L17,13 L19,3 L21,17 L23,5 L25,14 L27,8 L29,11 L31,10 L40,10'/%3E%3C/svg%3E");
-    background-size: 180px 30px;
-    background-position: center top; 
-    opacity: 0.5;
-    text-align: center;
+#footer-container a, footer a {
+    color: #555555;               /* Clean, readable charcoal gray */
+    text-decoration: none;        /* Kills the ugly raw underline */
+    font-weight: 500;
     font-size: 0.85rem;
-    color: #999;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin: 0 0.8rem;             /* Perfectly spaces the links away from each other */
+    
+    /* Smooth transition for the interactive hover color shift */
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom: 1px solid transparent; 
+    padding-bottom: 2px;
 }
 
+/* Hover State: Slices to your signature crustal dark red on mouseover */
+#footer-container a:hover, footer a:hover {
+    color: #8C1919;               
+    border-bottom: 1px solid rgba(140, 25, 25, 0.3); /* Subtle sophisticated accent line */
+}
+
+/* The Copyright Line underneath */
+#footer-container p, footer .copyright {
+    margin-top: 0.8rem;          /* Pushes copyright text cleanly below links */
+    font-size: 0.8rem;
+    color: #aaaaaa;               /* Soft slate gray so it doesn't shout for attention */
+    letter-spacing: 0.5px;
+}
 /* ==========================================================================
    4. INTERACTIVE CLICK MOUSE SHOCKWAVES
    ========================================================================== */
