@@ -359,7 +359,12 @@ body {
     background-size: cover;        /* Stretches the landscape to fill the display */
     background-position: center;   /* Keeps the focus centered */
     
-    padding: 0 4%;
+    margin: 0 auto;
+    padding: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
 }
 
 /* ==========================================================================
@@ -372,6 +377,7 @@ main {
     border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.4s ease-in-out;
+    margin: 0;
 }
 
 /* Float your top navigation cleanly over the background landscape */
