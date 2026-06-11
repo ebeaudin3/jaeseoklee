@@ -368,7 +368,7 @@ body {
 
 main {
     background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
-    padding: 0 12rem 4rem 12rem;
+    padding: 0 12rem 0 12rem;
     border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.4s ease-in-out;
