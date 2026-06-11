@@ -1,28 +1,60 @@
-
+/* ==========================================================================
+   1. GLOBAL RESET & BASELINE UTILITIES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scrollbar-gutter: stable; /* Kills layout horizontal jitter across tabs */
+    min-height: 100vh;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #1C1D1F;
-    background-color: #F9F8F5;
-    line-height: 1.6;
-    padding: 0 6%; /* Side margins for the entire screen layout */
-    transition: background-color 0.3s ease; /* Optional: smooths out page transitions */
-}
-
-nav a:hover, nav a.active {
-    color: #D34E36; /* Crisp seismic indicator red */
-}
-
-/* Main Display Canvas Container */
-main {
-    max-width: 1600px;
+    color: #111;
+    
+    /* Pinned San Andreas Fault Backdrop */
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.15)), 
+                      url('images/san_andreas_fault_carrizo_plain.jpg');
+    background-attachment: fixed;  
+    background-size: cover;        
+    background-position: center;   
+    
     margin: 0 auto;
-    padding-bottom: 5rem;
+    padding: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center; /* Horizontally centers the layout engine */
+}
+
+/* ==========================================================================
+   2. THE MASTER COLUMN (Locked Full Height & Expanded Width)
+   ========================================================================== */
+main {
+    max-width: 1600px;           /* Stretches container outward left and right */
+    width: 100%;
+    min-height: 100vh;           /* Forces sheet to floor on short tabs, grows on long tabs */
+    background-color: #FDFBF9;   /* Smooth limestone off-white */
+    
+    /* Generates your massive left/right cushion frame around text/images */
+    padding: 0 9rem 4rem 9rem; 
+    margin: 0;
+    
+    /* Layout structural locks */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-width: 0;
+    
+    /* Presentation boundaries */
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+    
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -32,15 +64,16 @@ main {
 }
 
 /* ==========================================================================
-   2. FIXED BASELINE NAVIGATION HEADER & FOOTER
+   3. FIXED HEADER AND FOOTER CONTROLS
    ========================================================================== */
 #header-container {
     display: flex;
     justify-content: space-between;
-    align-items: baseline; /* Locks name and menu tabs onto the exact same text line */
-    padding: 4.5rem 0 3.5rem 0;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: baseline;       /* Locks name and menu tabs onto the exact same text line */
+    width: 100%;
+    padding: 4.5rem 0 2.5rem 0;
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 4rem;          /* Uniform breathing room before content sections */
 }
 
 .logo {
@@ -57,8 +90,8 @@ main {
 }
 
 .logo a {
-    color: inherit;
-    text-decoration: none; /* Keeps logo text completely clean and free of underlines */
+    color: #000000;
+    text-decoration: none; 
 }
 
 .logo p {
@@ -66,9 +99,10 @@ main {
     color: #666;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    margin-top: 0.3rem; /* Spacing that pushes subtitle cleanly beneath name */
+    margin-top: 0.3rem; 
 }
 
+/* Seismic Navigation Menu & Active Indicators */
 nav {
     display: flex;
     gap: 2.5rem;
@@ -76,44 +110,93 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #999;
+    color: #888888;
+    font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 14px;         /* Room for the wave underline */
     transition: color 0.2s ease;
 }
 
-nav a:hover, nav a.active {
-    color: #000;
+nav a:hover {
+    color: #111111;
+}
+
+nav a.active {
+    color: #8C1919;               /* Locks active tab text to matching seismic red */
+    font-weight: 700;
+}
+
+/* The Tectonic Underline Trace Generator */
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 14px;
+    width: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 14' fill='none' stroke='%238C1919' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0,7 L13,7 L15,3 L17,11 L19,0 L21,14 L23,4 L25,9 L27,7 L40,7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    animation: seismicTrace 0.35s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes seismicTrace {
+    0% { width: 0%; opacity: 0; }
+    100% { width: 110%; opacity: 1; }
 }
 
 /* Seismogram Footer Alignment */
 #footer-container, footer {
-    max-width: 1200px;
-    margin: 7rem auto 0 auto;
-    padding: 4rem 0 2rem 0; 
-    
-    border-top: none; /* Disables any default structural borders */
-    
+    width: 100%;
+    margin-top: auto;            /* Spring anchor: aggressively pins footer to absolute page bottom */
+    padding: 6rem 0 2rem 0; 
     background-repeat: no-repeat;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' fill='none' stroke='%23222222' stroke-width='0.6'%3E%3Cpath d='M0,10 L12,10 L14,7 L17,13 L19,3 L21,17 L23,5 L25,14 L27,8 L29,11 L31,10 L40,10'/%3E%3C/svg%3E");
-        
     background-size: 180px 30px;
     background-position: center top; 
-    opacity: 0.65;
-    
+    opacity: 0.5;
     text-align: center;
     font-size: 0.85rem;
     color: #999;
 }
 
 /* ==========================================================================
-   3. UNIFORM SPLIT-SCREEN GRID LAYOUTS (About & Fieldwork Pages)
+   4. INTERACTIVE CLICK MOUSE SHOCKWAVES
    ========================================================================== */
+.seismic-wavefront {
+    position: fixed;
+    border: 1.5px solid rgba(140, 25, 25, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 999999; 
+    animation: propagate 0.8s cubic-bezier(0.1, 0.4, 0.2, 1) forwards;
+}
+
+@keyframes propagate {
+    0% { width: 0; height: 0; opacity: 0.9; }
+    100% { width: 220px; height: 220px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ==========================================================================
+   5. UNIFORM CONTENT GRID SYSTEM (About & Fieldwork Pages)
+   ========================================================================== */
+#page-content h2 {
+    margin-bottom: 2.5rem;        /* Symmetrical gap anchor for lists across pages */
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 0.5rem;
+}
+
 .split-container {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Enforces strict 55% to 45% proportions */
+    grid-template-columns: 1.1fr 0.9fr; 
     gap: 5rem;
     align-items: flex-start;
     margin-top: 1rem;
@@ -132,25 +215,12 @@ nav a:hover, nav a.active {
     margin-bottom: 1.5rem;
 }
 
-/* Standardized Frame Layout for Images across ALL pages */
-.split-image img,
-.project-figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid #f2f2f2;
-    padding: 0.4rem;
-    background-color: #fff;
-}
-
-/* Update your profile picture frame to look like a precise scientific figure map */
+/* Profile picture frame style */
 .split-image img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-    
-    /* Elegant scientific alternating map-border aesthetic */
     padding: 6px;
     border: 1px solid #111;
     outline: 4px solid #fff;
@@ -158,7 +228,6 @@ nav a:hover, nav a.active {
     background-color: #fff;
 }
 
-/* Native Zoom Indicator for Figures linking to High-Res tabs */
 .image-link {
     display: block;
     cursor: zoom-in;
@@ -170,7 +239,7 @@ nav a:hover, nav a.active {
 }
 
 /* ==========================================================================
-   4. SQUEEZED COMPACT TIMELINE (Education, Awards, & Locations)
+   6. TIMELINE COMPONENT LAYOUT
    ========================================================================== */
 .education-timeline {
     max-width: 850px;
@@ -179,16 +248,16 @@ nav a:hover, nav a.active {
 
 .timeline-item {
     display: flex;
-    gap: 2rem;             /* Compressed gap between column sections */
-    margin-bottom: 1.2rem; /* Squeezed timeline margins to fit perfectly with portrait frames */
+    gap: 2rem;             
+    margin-bottom: 1.2rem; 
     align-items: flex-start;
 }
 
 .timeline-year {
     font-weight: 700;
     color: #bbb;
-    min-width: 95px;       /* Sleek width parameters for time steps */
-    font-size: 0.95rem;    /* Refined scale for tight spacing */
+    min-width: 95px;       
+    font-size: 0.95rem;    
     line-height: 1.3;
 }
 
@@ -199,7 +268,7 @@ nav a:hover, nav a.active {
 }
 
 .timeline-content h3 {
-    font-size: 1.15rem;    /* Clean title scale to minimize row wraps */
+    font-size: 1.15rem;    
     font-weight: 600;
     color: #111;
     line-height: 1.3;
@@ -219,7 +288,7 @@ nav a:hover, nav a.active {
 }
 
 /* ==========================================================================
-   5. RESEARCH VIEW SPECIFIC LAYOUT CONSTRAINTS
+   7. RESEARCH PROJECT COMPONENT LAYOUT
    ========================================================================== */
 .research-intro {
     max-width: 1080px;  
@@ -239,7 +308,7 @@ nav a:hover, nav a.active {
 
 .project-text {
     margin-bottom: 2.5rem;
-    max-width: 1080px;      /* Matches the introduction layout bounds beautifully */
+    max-width: 1080px;      
 }
 
 .project-text h3 {
@@ -257,9 +326,18 @@ nav a:hover, nav a.active {
 
 .project-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Uniform side-by-side display for twin plots */
+    grid-template-columns: 1fr 1fr; 
     gap: 1.5rem;
     align-items: flex-start;
+}
+
+.project-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #f2f2f2;
+    padding: 0.4rem;
+    background-color: #fff;
 }
 
 .project-figure .caption {
@@ -277,13 +355,12 @@ nav a:hover, nav a.active {
 }
 
 /* ==========================================================================
-   PUBLICATIONS & LISTINGS REFERENCE
+   8. PUBLICATIONS LAYOUT
    ========================================================================== */
-.publications-section h3 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-    letter-spacing: 1px;
+.publications-list {
+    margin-top: 0;
+    padding-left: 0;
+    list-style: none;
 }
 
 .pub-item {
@@ -313,7 +390,6 @@ nav a:hover, nav a.active {
     text-decoration: underline;
 }
 
-/* Hanging Indent Structural Context for Inline Block Citations */
 .research-reference {
     font-size: 0.9rem;
     color: #666;
@@ -332,210 +408,26 @@ nav a:hover, nav a.active {
     margin-bottom: 0.8rem;
 }
 
-.research-reference ul {
-    list-style: none;
-}
-
-.research-reference li {
-    margin-bottom: 0.8rem;
-    padding-left: 1.5rem;
-    text-indent: -1.5rem;
-}
-
+.research-reference ul { list-style: none; }
+.research-reference li { margin-bottom: 0.8rem; padding-left: 1.5rem; text-indent: -1.5rem; }
 
 /* ==========================================================================
-   Parallax Tectonic Earth Backdrop
+   9. MOBILE RESPONSIVE OVERRIDES
    ========================================================================== */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #111;
-    
-    /* 1. Insert your background landscape image here */
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.15)), 
-                      url('images/san_andreas_fault_carrizo_plain.jpg');
-    
-    /* 2. The Parallax Magic Engine */
-    background-attachment: fixed;  /* Keeps the image locked in place while scrolling */
-    background-size: cover;        /* Stretches the landscape to fill the display */
-    background-position: center;   /* Keeps the focus centered */
-    
-    margin: 0 auto;
-    padding: 0;
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
+@media (max-width: 1024px) {
+    main { padding: 0 4rem 4rem 4rem; }
 }
 
-/* ==========================================================================
-   The Floating Website Bounding Box
-   ========================================================================== */
-
-main {
-    background-color: #ffffff;     /* Flat white or ivory (#faf9f6) */
-    padding: 0 12rem 0 12rem;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.4s ease-in-out;
-    margin: 0;
-}
-
-/* Float your top navigation cleanly over the background landscape */
-#header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    max-width: 1200px;
-    margin: 0 auto;
-    
-    /* Give header text high-contrast pop over the landscape background */
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4); 
-}
-
-/* Tweak your header logo text to stay bold over the scenery */
-.logo a {
-    color: #000000;
-}
-nav a {
-    color: #444444;
-    font-weight: 600;
-}
-nav a:hover, nav a.active {
-    color: #000000;
-}
-
-/* ==========================================================================
-   Interactive Seismic Wavefront Click Effect
-   ========================================================================== */
-.seismic-wavefront {
-    position: fixed;
-    border: 1.5px solid rgba(140, 25, 25, 0.8); /* dark red */
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%) scale(0);
-    z-index: 999999; 
-    animation: propagate 0.8s cubic-bezier(0.1, 0.4, 0.2, 1) forwards;
-}
-
-@keyframes propagate {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.9;
-    }
-    100% {
-        width: 220px;
-        height: 220px;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-/* ==========================================================================
-   Seismic Navigation Menu & Active Indicators
-   ========================================================================== */
-nav {
-    display: flex;
-    gap: 2.5rem;                  /* Clean, consistent spacing between items */
-}
-
-nav a {
-    text-decoration: none;
-    color: #888888;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    
-    position: relative;
-    padding-bottom: 14px;         /* Leaves precise breathing room for the wave underline */
-    transition: color 0.2s ease;
-}
-
-/* Hover state: text sharpens to near-black */
-nav a:hover {
-    color: #111111;
-}
-
-/* Active State: Text locks to matching crustal dark red */
-nav a.active {
-    color: #8C1919;               /* Matches your cursor shockwaves precisely */
-    font-weight: 700;
-}
-
-/* The Tectonic Underline Trace Generator */
-nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    height: 14px;                 /* Height bounds of the wave spikes */
-    width: 100%;                  /* Matches the exact width of the active word */
-    
-    /* Inline custom SVG: A flat baseline that erupts into an earthquake signal right in the center */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 14' fill='none' stroke='%238C1919' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0,7 L13,7 L15,3 L17,11 L19,0 L21,14 L23,4 L25,9 L27,7 L40,7'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    
-    /* Micro-animation: The wave propagates outward from the epicenter when the tab swaps */
-    animation: seismicTrace 0.35s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-/* Propagation physics for the underline */
-@keyframes seismicTrace {
-    0% {
-        width: 0%;
-        opacity: 0;
-    }
-    100% {
-        width: 110%;              /* Bleeds slightly past the edges of the word for an authentic chart look */
-        opacity: 1;
-    }
-}
-
-/* ==========================================================================
-   MOBILE RESPONSIVE OVERRIDES
-   ========================================================================== */
 @media (max-width: 768px) {
-    #header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-        padding: 2.5rem 0;
-    }
-    
-    nav {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .split-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .project-gallery {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .pub-item {
-        flex-direction: column;
-        gap: 0.2rem;
-    }
+    main { padding: 0 2rem 4rem 2rem; }
+    #header-container { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.5rem 0; }
+    nav { gap: 1.5rem; flex-wrap: wrap; }
+    .split-container { grid-template-columns: 1fr; gap: 3rem; }
+    .project-gallery { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pub-item { flex-direction: column; gap: 0.2rem; }
 }
 
 @media (max-width: 600px) {
-    .timeline-item {
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-bottom: 2.5rem;
-    }
-    
-    .timeline-year {
-        min-width: auto;
-    }
+    .timeline-item { flex-direction: column; gap: 0.4rem; margin-bottom: 2.5rem; }
+    .timeline-year { min-width: auto; }
 }
