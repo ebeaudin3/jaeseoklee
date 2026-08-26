@@ -85,28 +85,49 @@ function initSPANavigation() {
 }
 
 function navigateToPage(url) {
-    fetch(url)
-        .then(response => response.text())
-        .then(htmlString => {
-            const parser = new DOMParser();
-            const nextDoc = parser.parseFromString(htmlString, 'text/html');
-            
-            // Surgically pull out the internal view container
-            const newInnerContent = nextDoc.querySelector('#page-content').innerHTML;
-            
-            // Swap out ONLY the middle text canvas
-            document.querySelector('#page-content').innerHTML = newInnerContent;
-            
-            // Update browser history state
-            history.pushState({ url }, '', url);
-            
-            // Re-verify which navigation tab is lit up
-            updateActiveNavTab(url);
-        })
-        .catch(err => {
-            console.error('Failed to stream tectonic content:', err);
-            window.location.href = url;
+    const pageContent = document.querySelector('#page-content');
+    
+    // 1. Begin smooth exit animation
+    pageContent.classList.add('is-exiting');
+
+    // 2. Fetch the new HTML while the old page is fading out
+    const fetchContent = fetch(url).then(response => response.text());
+    
+    // 3. Wait for BOTH the 180ms fade-out AND the network fetch to finish
+    Promise.all([
+        fetchContent,
+        new Promise(resolve => setTimeout(resolve, 180)) // Matches CSS 0.18s duration
+    ])
+    .then(([htmlString]) => {
+        const parser = new DOMParser();
+        const nextDoc = parser.parseFromString(htmlString, 'text/html');
+        const newInnerContent = nextDoc.querySelector('#page-content').innerHTML;
+
+        // 4. Prepare container for entrance animation from below
+        pageContent.classList.remove('is-exiting');
+        pageContent.classList.add('is-entering');
+        
+        // Inject fresh content
+        pageContent.innerHTML = newInnerContent;
+
+        // Scroll back to top of main container seamlessly
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // 5. Trigger smooth rise & fade-in on the next animation frame
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                pageContent.classList.remove('is-entering');
+            });
         });
+
+        // Update URL & active tab states
+        history.pushState({ url }, '', url);
+        updateActiveNavTab(url);
+    })
+    .catch(err => {
+        console.error('Failed to stream tectonic content:', err);
+        window.location.href = url;
+    });
 }
 
 function updateActiveNavTab(url) {

@@ -35,27 +35,22 @@ body {
    2. THE MASTER COLUMN (Locked Full Height & Expanded Width)
    ========================================================================== */
 main {
-    max-width: 1600px;           /* Stretches container outward left and right */
+    max-width: 1600px;
     width: 100%;
-    min-height: 100vh;           /* Forces sheet to floor on short tabs, grows on long tabs */
-    background-color: #FDFBF9;   /* Smooth limestone off-white */
-    
-    /* Generates your massive left/right cushion frame around text/images */
+    min-height: 100vh;
+    background-color: #FDFBF9;
     padding: 0 9rem 4rem 9rem; 
     margin: 0;
     
-    /* Layout structural locks */
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     min-width: 0;
     
-    /* Presentation boundaries */
     border-left: 1px solid rgba(0, 0, 0, 0.05);
     border-right: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
-    
-    animation: fadeIn 0.4s ease-in-out;
+    /* Removed old animation: fadeIn override */
 }
 
 @keyframes fadeIn {
@@ -220,6 +215,30 @@ nav a.active::after {
 }
 
 /* ==========================================================================
+   Smooth View-Transition Animations
+   ========================================================================== */
+#page-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Exit State: Dissolves and floats upward */
+#page-content.is-exiting {
+    opacity: 0;
+    transform: translateY(-12px);
+}
+
+/* Entrance Pre-State: Starts lowered and transparent */
+#page-content.is-entering {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: none;
+}
+
+
+/* ==========================================================================
    5. UNIFORM CONTENT GRID SYSTEM (About & Fieldwork Pages)
    ========================================================================== */
 #page-content h2 {
@@ -228,6 +247,20 @@ nav a.active::after {
     letter-spacing: 0.5px;
     border-bottom: 1px solid #eee; 
     padding-bottom: 0.5rem;
+}
+
+#page-content a {
+    color: #8C1919;               /* Signature crustal dark red */
+    text-decoration: none;        /* Removes default heavy underline */
+    font-weight: 500;
+    border-bottom: 1px solid rgba(140, 25, 25, 0.3); /* Subtle hairline underline */
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover State */
+#page-content a:hover {
+    color: #5C1010;               /* Slightly deeper red on hover */
+    border-bottom-color: #5C1010; /* Darkens hairline on hover */
 }
 
 .split-container {
