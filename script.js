@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("header-container").innerHTML = data;
             setActiveTab();
             
-            // CRITICAL FIX: Only wire up the SPA navigation AFTER the header HTML actually exists in the DOM!
             initSPANavigation(); 
         })
         .catch(err => console.error("Header template loading failed:", err));
@@ -61,19 +60,26 @@ window.addEventListener('mousedown', (e) => {
    SPA-like NAVIGATION ENGINE
    ========================================================================== */
 
-// Wrapped inside a function so we can initialize it safely at the correct time
 function initSPANavigation() {
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             const targetUrl = link.getAttribute('href');
             
-            if (targetUrl.startsWith('http') || targetUrl.startsWith('#')) return;
-            
-            // Safely stop the full page reload
-            e.preventDefault();
-            
-            // Execute the partial content stream
-            navigateToPage(targetUrl);
+            // Safety check for empty href attributes
+            if (!targetUrl) return;
+
+            // Bypass SPA router for external links, section anchors, PDFs, or new tabs
+            if (
+                targetUrl.startsWith('http') || 
+                targetUrl.startsWith('#') || 
+                targetUrl.endsWith('.pdf') || 
+                link.getAttribute('target') === '_blank' // PDF opens a new page
+            ) {
+                return;
+            }
+
+            e.preventDefault(); // Stop full page reload
+            navigateToPage(targetUrl); // Execute smooth content swap
         });
     });
 }
@@ -106,7 +112,7 @@ function navigateToPage(url) {
 function updateActiveNavTab(url) {
     document.querySelectorAll('nav a').forEach(link => {
         const href = link.getAttribute('href');
-        if (url.includes(href)) {
+        if (href && url.includes(href)) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
